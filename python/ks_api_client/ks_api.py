@@ -396,13 +396,13 @@ class KSTradeApi():
 
                 @self.sio.event
                 def connect_error(data):
-                    #print("Connection failed")
-		    pass	
+			#print("Connection failed")
+			pass	
 
                 @self.sio.event
                 def disconnect():
-                    #print('Connection closed')
-		    pass
+			#print('Connection closed')
+			pass
 
                 @self.sio.on('getdata')
                 def on_getdata(data, callback=callback):
