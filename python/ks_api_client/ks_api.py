@@ -388,7 +388,7 @@ class KSTradeApi():
                 socketio_path = parsed_broadcast_host.path
                 self.sio = socketio.Client(
                     reconnection=True, request_timeout=20, reconnection_attempts=5, engineio_logger=False,
-                            logger=False,http_session=session, ssl_verify=session.verify)
+                            logger=False,http_session=session, ssl_verify=False)#session.verify)
 
                 @self.sio.event
                 def connect():
