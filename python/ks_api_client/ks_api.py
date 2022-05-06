@@ -388,7 +388,7 @@ class KSTradeApi():
                 socketio_path = parsed_broadcast_host.path
                 self.sio = socketio.Client(
                     reconnection=True, request_timeout=20, reconnection_attempts=5, engineio_logger=False,
-                            logger=False,http_session=session, ssl_verify=False)#session.verify)
+                            logger=False,http_session=session, ssl_verify=session.verify)
 
                 @self.sio.event
                 def connect():
@@ -396,11 +396,13 @@ class KSTradeApi():
 
                 @self.sio.event
                 def connect_error(data):
-                    print("Connection failed")
+                    #print("Connection failed")
+		    pass	
 
                 @self.sio.event
                 def disconnect():
-                    print('Connection closed')
+                    #print('Connection closed')
+		    pass
 
                 @self.sio.on('getdata')
                 def on_getdata(data, callback=callback):
