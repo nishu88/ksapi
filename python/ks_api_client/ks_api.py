@@ -433,7 +433,7 @@ class KSTradeApi():
                 self.sio.connect(broadcast_host, 
                         headers={'Authorization': 'Bearer ' + jsonResponse['result']['token']},
                         transports=["websocket"], socketio_path=socketio_path)
-		self.sio.wait()
+                self.sio.wait()
             else:
                 print('Token not found')
         except Exception as err:
