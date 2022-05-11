@@ -390,9 +390,19 @@ class KSTradeApi():
                     reconnection=True, request_timeout=20, reconnection_attempts=5, engineio_logger=False,
                             logger=False,http_session=session, ssl_verify=session.verify)
 
+                def setInterval(func,time):
+                    e = threading.Event()
+                    while not e.wait(time):
+                        func()   
+
+                def foo():
+                    self.sio.emit('handshake', {'inputtoken': 'Hello World!'})                 
+
                 @self.sio.event
                 def connect():
+                    # print("Connection success")
                     self.sio.emit('pageload', {'inputtoken': input_tokens})
+                    setInterval(foo,5)
 
                 @self.sio.event
                 def connect_error(data):
@@ -408,6 +418,7 @@ class KSTradeApi():
                 def on_getdata(data, callback=callback):
                     callback(data)
 
+                self.sio.wait()
                 # Do the connection using above access token
                 self.sio.connect(broadcast_host, 
                         headers={'Authorization': 'Bearer ' + jsonResponse['result']['token']},
