@@ -6,6 +6,7 @@ import socketio
 from urllib3 import make_headers
 import urllib.parse
 import requests
+import threading
 
 from ks_api_client.exceptions import ApiException, ApiValueError
 from ks_api_client.models import NewMTFOrder, NewNormalOrder, NewOrder, \
