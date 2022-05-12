@@ -6,7 +6,6 @@ import socketio
 from urllib3 import make_headers
 import urllib.parse
 import requests
-import threading
 
 from ks_api_client.exceptions import ApiException, ApiValueError
 from ks_api_client.models import NewMTFOrder, NewNormalOrder, NewOrder, \
@@ -391,19 +390,9 @@ class KSTradeApi():
                     reconnection=True, request_timeout=20, reconnection_attempts=5, engineio_logger=False,
                             logger=False,http_session=session, ssl_verify=session.verify)
 
-                def setInterval(func,time):
-                    e = threading.Event()
-                    while not e.wait(time):
-                        func()   
-
-                def foo():
-                    self.sio.emit('handshake', {'inputtoken': 'Hello World!'})                 
-
                 @self.sio.event
                 def connect():
-                    # print("Connection success")
                     self.sio.emit('pageload', {'inputtoken': input_tokens})
-                    setInterval(foo,5)
 
                 @self.sio.event
                 def connect_error(data):
@@ -415,16 +404,6 @@ class KSTradeApi():
                     #print('Connection closed')
                     pass
 
-                @self.sio.on('broadcast')
-                def on_broadcast(msg):
-                    # print('broadcast: ', msg)
-                    pass
-
-                @self.sio.on('message')
-                def on_message(msg):
-                    # print('message: ', msg)
-                    pass   
-
                 @self.sio.on('getdata')
                 def on_getdata(data, callback=callback):
                     callback(data)
@@ -433,7 +412,6 @@ class KSTradeApi():
                 self.sio.connect(broadcast_host, 
                         headers={'Authorization': 'Bearer ' + jsonResponse['result']['token']},
                         transports=["websocket"], socketio_path=socketio_path)
-                self.sio.wait()
             else:
                 print('Token not found')
         except Exception as err:
