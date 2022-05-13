@@ -412,6 +412,16 @@ class KSTradeApi():
                     #print('Connection closed')
                     pass
 
+                @self.sio.on('broadcast')
+                def on_broadcast(msg):
+                    # print('broadcast: ', msg)
+                    pass
+
+                @self.sio.on('message')
+                def on_message(msg):
+                    # print('message: ', msg)
+                    pass       
+
                 @self.sio.on('getdata')
                 def on_getdata(data, callback=callback):
                     callback(data)
