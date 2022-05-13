@@ -353,7 +353,6 @@ class KSTradeApi():
             new_array.append(self.convertObject(obj))
         return new_array
 
-
     def subscribe(self, input_tokens, callback, broadcast_host=broadcast_host):
         try:
             if self.consumer_secret == None or not self.consumer_secret:
@@ -412,6 +411,7 @@ class KSTradeApi():
                 self.sio.connect(broadcast_host, 
                         headers={'Authorization': 'Bearer ' + jsonResponse['result']['token']},
                         transports=["websocket"], socketio_path=socketio_path)
+                return self.sio        
             else:
                 print('Token not found')
         except Exception as err:
