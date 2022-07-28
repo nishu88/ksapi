@@ -404,12 +404,12 @@ class KSTradeApi():
 
                 @self.sio.event
                 def connect_error(data):
-                    #print("Connection failed")
+                    print("Connection failed")
                     pass	
 
                 @self.sio.event
                 def disconnect():
-                    #print('Connection closed')
+                    print('Connection closed')
                     pass
 
                 @self.sio.on('broadcast')
@@ -431,7 +431,7 @@ class KSTradeApi():
                         headers={'Authorization': 'Bearer ' + jsonResponse['result']['token']},
                         transports=["websocket"], socketio_path=socketio_path)
                 
-                #self.sio.wait()
+                self.sio.wait()
 
                 return self.sio        
             else:
