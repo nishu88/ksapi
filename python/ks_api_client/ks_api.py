@@ -431,7 +431,7 @@ class KSTradeApi():
                         headers={'Authorization': 'Bearer ' + jsonResponse['result']['token']},
                         transports=["websocket"], socketio_path=socketio_path)
                 
-                self.sio.wait()
+                #self.sio.wait()
 
                 return self.sio        
             else:
