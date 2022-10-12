@@ -353,7 +353,7 @@ class KSTradeApi():
             new_array.append(self.convertObject(obj))
         return new_array
 
-    def subscribe(self, input_tokens, callback, broadcast_host=broadcast_host):
+    def subscribe(self, input_tokens, callback, error_callback, broadcast_host=broadcast_host):
         try:
             if self.consumer_secret == None or not self.consumer_secret:
                 raise ApiValueError("Please provide the consumer_secret paramater while creating KSTradeApi object or supply in settings file.")
@@ -405,6 +405,7 @@ class KSTradeApi():
                 @self.sio.event
                 def connect_error(data):
                     print("Connection failed")
+                    error_callback()
                     pass	
 
                 @self.sio.event
