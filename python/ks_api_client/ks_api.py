@@ -384,7 +384,7 @@ class KSTradeApi():
             # Check if we got access token
             if 'result' in jsonResponse and 'token' in jsonResponse['result'] and jsonResponse['result']['token']:
                 parsed_broadcast_host = urllib.parse.urlparse(broadcast_host)
-                socketio_path = parsed_broadcast_host.path
+                socketio_path = '/feed/fast' #parsed_broadcast_host.path
                 self.sio = socketio.Client(
                     reconnection=True, request_timeout=20, reconnection_attempts=5, engineio_logger=False,
                             logger=False,http_session=session, ssl_verify=session.verify)
