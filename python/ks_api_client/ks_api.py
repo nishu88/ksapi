@@ -393,7 +393,8 @@ class KSTradeApi():
                     e = threading.Event()
                     while not e.wait(time):
                         func()
-
+		
+		@self.sio.event
                 def foo():
                     self.sio.emit('handshake', {'inputtoken': 'Hello World!'})
 
