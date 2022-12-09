@@ -389,19 +389,19 @@ class KSTradeApi():
                     reconnection=True, request_timeout=20, reconnection_attempts=0, engineio_logger=False,
                             logger=False,http_session=session, ssl_verify=session.verify)
 
-                def setInterval(func,time):
-                    e = threading.Event()
-                    while not e.wait(time):
-                        func()
+                #def setInterval(func,time):
+                #    e = threading.Event()
+                #    while not e.wait(time):
+                #        func()
 		
-                @self.sio.event
-                def foo():
-                    self.sio.emit('handshake', {'inputtoken': 'Hello World!'})
+                #@self.sio.event
+                #def foo():
+                #    self.sio.emit('handshake', {'inputtoken': 'Hello World!'})
 
                 @self.sio.event
                 def connect():
                     self.sio.emit('pageload', {'inputtoken': input_tokens})
-                    setInterval(foo,5)
+                    #setInterval(foo,5)
 
                 @self.sio.event
                 def connect_error(data):
