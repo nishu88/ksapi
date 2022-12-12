@@ -436,7 +436,7 @@ class KSTradeApi():
                 
                 #self.sio.wait()
 
-                # return self.sio
+                return self.sio
             else:
                 print('Token not found')
         except Exception as err:
