@@ -396,8 +396,8 @@ class KSTradeApi():
 
                 @self.sio.event
                 def foo():
-                    self.sio.emit('pageload', {'inputtoken': '11717'})
-                    #self.sio.emit('handshake', {'inputtoken': 'Hello World!'})
+                    #self.sio.emit('pageload', {'inputtoken': '11717'})
+                    self.sio.emit('handshake', {'inputtoken': 'Hello World!'})
 
                 @self.sio.event
                 def connect():
