@@ -6,7 +6,6 @@ import socketio
 from urllib3 import make_headers
 import urllib.parse
 import requests
-import threading
 from ks_api_client.exceptions import ApiException, ApiValueError
 from ks_api_client.models import NewMTFOrder, NewNormalOrder, NewOrder, \
                 NewSMOrder, NewSOROrder, ExistingMTFOrder, ExistingNormalOrder, \
@@ -386,7 +385,7 @@ class KSTradeApi():
                 parsed_broadcast_host = urllib.parse.urlparse(broadcast_host)
                 socketio_path = '/feed/fast' #parsed_broadcast_host.path
                 self.sio = socketio.Client(
-                    reconnection=True, request_timeout=20, reconnection_attempts=0, engineio_logger=True,
+                    reconnection=True, request_timeout=20, reconnection_attempts=5, engineio_logger=True,
                             logger=True,http_session=session, ssl_verify=session.verify)
 
                 def setInterval(func,time):
