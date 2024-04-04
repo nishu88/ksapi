@@ -157,7 +157,7 @@ class RESTClientObject(object):
             headers['Content-Type'] = 'application/json'
 
         try:
-            timeout = urllib3.Timeout(total=3)
+            timeout = urllib3.Timeout(total=8)
             # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
             if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
                 if query_params:
